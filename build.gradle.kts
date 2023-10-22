@@ -43,7 +43,7 @@ dependencies {
 }
 
 tasks.bootJar {
-	mainClass = "br.com.requestReply"
+	mainClass = "br.com.requestReply.RequestReplyApplication"
 }
 
 
