@@ -15,15 +15,10 @@ class PixKafkaConsumer(
     @KafkaListener(topics = ["pix_example_spring_template_topic"])
     @SendTo
     fun consumer(message: Message<PixEvent>) : PixEvent {
-        println("Mensagem recebida: ${message}")
         val pix = message.payload
-        if (pix.quantity > 2 ){
-            Thread.sleep(1000)
-            println("waiting 2second")
-        } else {
-            Thread.sleep(2000)
-            println("waiting 4second")
-        }
-        return  message.payload
+        println("correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
+
+        Thread.sleep(100)
+        return  pix
     }
 }

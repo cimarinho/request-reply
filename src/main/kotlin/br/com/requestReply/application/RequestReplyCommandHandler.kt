@@ -9,7 +9,6 @@ class RequestReplyCommandHandler(
 ) {
 
     fun handler(command: RequestReplyCommand){
-        println("command $command")
         pixKafkaProducer.sendMessage(command.toEvent())
     }
 }

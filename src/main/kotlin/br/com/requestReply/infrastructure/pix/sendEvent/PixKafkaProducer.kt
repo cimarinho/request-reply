@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.ProducerRecord
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
 import org.springframework.kafka.support.KafkaHeaders
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class PixKafkaProducer(
@@ -16,18 +17,19 @@ class PixKafkaProducer(
 
     fun sendMessage(message: PixEvent) {
 
-        val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(topic, message)
+        val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(topic,
+            Random().nextInt(3) , message.correlationId,  message)
         record.headers().add(KafkaHeaders.REPLY_TOPIC, requestReplyTopic.toByteArray())
-
+        println("correlation ${message.correlationId}")
         val sendAndReceive = kafkaTemplate.sendAndReceive(record);
         val sendResult = sendAndReceive.getSendFuture().get();
 
         val consumer = sendAndReceive.get();
 
-        consumer.headers().forEach{
-            println("header ${it.key()} |  ${it.value()}")
-        }
-
+//        consumer.headers().forEach{
+//            println("header ${it}")
+//        }
+//
         println("consumerRecord.value()  ${consumer.value()}")
     }
 
