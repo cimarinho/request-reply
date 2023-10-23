@@ -6,7 +6,6 @@ import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.Message
 import org.springframework.stereotype.Service
 
-
 @Service
 class PixKafkaConsumer(
     private val mapper: ObjectMapper,
@@ -14,9 +13,8 @@ class PixKafkaConsumer(
 
     @KafkaListener(topics = ["pix_example_spring_template_topic"])
     fun consumer(message: Message<Any>) {
-        println("Mensagem recebida: ${message.payload.toString()}")
+        println("Mensagem recebida: ${message}")
         val pix = mapper.readValue(message.payload.toString(), PixEvent::class.java)
         println("Mensagem pix: ${pix}")
     }
-
 }
