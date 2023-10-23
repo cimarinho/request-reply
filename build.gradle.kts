@@ -31,12 +31,17 @@ sourceSets {
 }
 
 dependencies {
-	implementation("org.javamoney:moneta:1.4.2")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.0")
+
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+	implementation("org.springframework.cloud:spring-cloud-stream")
+	implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
 
 
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

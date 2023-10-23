@@ -19,7 +19,7 @@ class RequestReplyRoute(
     fun create(@RequestBody request: RequestReplyRequest): ResponseEntity<RequestReplyRequest> {
         println("Create $request")
         val correlationId = UUID.randomUUID()
-        handler.handler(request.toCommand(correlationId))
+        handler.handler(request.toCommand(correlationId.toString()))
         return ResponseEntity<RequestReplyRequest>(request, HttpStatus.CREATED)
     }
 }
