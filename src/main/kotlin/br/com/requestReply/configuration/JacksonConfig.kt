@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder
 
 @Configuration
-open class JacksonConfig  {
+class JacksonConfig  {
 
     @Bean
-    open fun objectMapper(): ObjectMapper {
+    fun objectMapper(): ObjectMapper {
         val objectMapper = Jackson2ObjectMapperBuilder.json().build<ObjectMapper>()
         val module = SimpleModule()
         objectMapper.registerModule(module)

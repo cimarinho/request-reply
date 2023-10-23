@@ -5,6 +5,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.kafka.common.serialization.StringSerializer
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
@@ -20,10 +21,20 @@ import org.springframework.kafka.support.serializer.JsonDeserializer
 @Configuration
 class KafkaConfiguration {
 
+    @Value("\${topic.request}")
+    private lateinit var topicRequest: String
+
+    @Value("\${topic.reply}")
+    private lateinit var topicReply: String
+
+    @Value("\${spring.kafka.bootstrap-servers}")
+    private lateinit var bootstrap: String
+
+
     @Bean
     fun producerFactory(): ProducerFactory<String, PixEvent> {
         val configProps: MutableMap<String, Any> = HashMap()
-        configProps[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
+        configProps[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrap
         configProps[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
         configProps[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] =
             org.springframework.kafka.support.serializer.JsonSerializer::class.java
@@ -46,7 +57,7 @@ class KafkaConfiguration {
 
     @Bean
     fun replyContainer(cf: ConsumerFactory<String, PixEvent>): KafkaMessageListenerContainer<String, PixEvent> {
-        val containerProperties = ContainerProperties("pix_example_spring_reply_topic")
+        val containerProperties = ContainerProperties(topicReply)
         return KafkaMessageListenerContainer<String, PixEvent>(cf, containerProperties)
     }
 
@@ -71,9 +82,8 @@ class KafkaConfiguration {
     @Bean
     fun consumerConfigs(): Map<String, Any> {
         val props: MutableMap<String, Any> = HashMap()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "localhost:9092"
-        props[ConsumerConfig.GROUP_ID_CONFIG] = "pix_example_spring_template_topic"
+        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrap
+        props[ConsumerConfig.GROUP_ID_CONFIG] = topicRequest
         return props
     }
-
 }

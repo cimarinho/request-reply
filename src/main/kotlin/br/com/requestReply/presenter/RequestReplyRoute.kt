@@ -10,11 +10,9 @@ import java.util.*
 @RequestMapping("/api")
 class RequestReplyRoute(
     private val handler: RequestReplyCommandHandler,
-
-    ) {
+) {
     @PostMapping("/pix")
     fun create(@RequestBody request: RequestReplyRequest): ResponseEntity<RequestReplyRequest> {
-//        println("Create $request")
         val correlationId = UUID.randomUUID()
         handler.handler(request.toCommand(correlationId.toString()))
         return ResponseEntity<RequestReplyRequest>(request, HttpStatus.CREATED)
