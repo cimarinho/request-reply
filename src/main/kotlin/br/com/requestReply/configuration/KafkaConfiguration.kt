@@ -48,20 +48,6 @@ class KafkaConfiguration {
 
 
     @Bean
-    fun replyKafkaTemplate(
-        pf: ProducerFactory<String, PixEvent>?,
-        container: KafkaMessageListenerContainer<String, PixEvent>?
-    ): ReplyingKafkaTemplate<String, PixEvent, PixEvent> {
-        return ReplyingKafkaTemplate(pf, container)
-    }
-
-    @Bean
-    fun replyContainer(cf: ConsumerFactory<String, PixEvent>): KafkaMessageListenerContainer<String, PixEvent> {
-        val containerProperties = ContainerProperties(topicReply)
-        return KafkaMessageListenerContainer<String, PixEvent>(cf, containerProperties)
-    }
-
-    @Bean
     fun kafkaListenerContainerFactory(): KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, PixEvent>> {
         val factory: ConcurrentKafkaListenerContainerFactory<String, PixEvent> =
             ConcurrentKafkaListenerContainerFactory<String, PixEvent>()

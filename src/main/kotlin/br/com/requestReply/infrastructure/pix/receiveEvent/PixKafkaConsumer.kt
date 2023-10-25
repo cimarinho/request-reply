@@ -17,7 +17,7 @@ class PixKafkaConsumer(
     @SendTo
     fun consumer(message: Message<PixEvent>) : PixEvent {
         val pix = message.payload
-        println("correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
+        println("Consumer correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
 
         Thread.sleep(100)
         return  pix
