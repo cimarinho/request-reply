@@ -3,7 +3,6 @@ package br.com.requestReply.infrastructure.pix.kafka.receive
 import br.com.requestReply.domain.PixEvent
 import br.com.requestReply.infrastructure.pix.postgres.PixPostgresRepository
 import br.com.requestReply.infrastructure.pix.postgres.Status
-import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.Message
 import org.springframework.messaging.handler.annotation.SendTo
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class PixKafkaConsumer(
-    private val mapper: ObjectMapper,
     private val  pixPostgresRepository: PixPostgresRepository,
 ) {
 
