@@ -1,4 +1,4 @@
-package br.com.requestReply.infrastructure.pix.sendEvent
+package br.com.requestReply.infrastructure.pix.kafka.send
 
 import br.com.requestReply.domain.PixEvent
 import org.apache.kafka.clients.producer.ProducerRecord

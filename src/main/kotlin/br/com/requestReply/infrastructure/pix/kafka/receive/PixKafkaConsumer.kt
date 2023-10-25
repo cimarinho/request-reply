@@ -1,6 +1,8 @@
-package br.com.requestReply.infrastructure.pix.receiveEvent
+package br.com.requestReply.infrastructure.pix.kafka.receive
 
 import br.com.requestReply.domain.PixEvent
+import br.com.requestReply.infrastructure.pix.postgres.PixPostgresRepository
+import br.com.requestReply.infrastructure.pix.postgres.Status
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.Message
@@ -10,17 +12,20 @@ import org.springframework.stereotype.Service
 @Service
 class PixKafkaConsumer(
     private val mapper: ObjectMapper,
+    private val  pixPostgresRepository: PixPostgresRepository,
 ) {
 
     @KafkaListener(topics = ["\${topic.request}"])
     @SendTo
-    fun consumer(message: Message<PixEvent>) : PixEvent {
+    fun consumer(message: Message<PixEvent>) {
         val pix = message.payload
         println("Consumer correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
 
-        Thread.sleep(2100)
+        Thread.sleep(2000)
         println("waiting 2s")
 
-        return  pix
+        val pixEvent = pixPostgresRepository.findByCorrelationId(pix.correlationId)
+        pixEvent.updateStatus(Status.SETTLED)
+        pixPostgresRepository.update(pixEvent)
     }
 }

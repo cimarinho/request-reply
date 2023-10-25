@@ -24,6 +24,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.kafka:spring-kafka")
 
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("org.postgresql:postgresql")
+
+    implementation ("org.springframework.boot:spring-boot-starter-validation")
+    implementation ("org.springframework.boot:spring-boot-devtools")
 
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
