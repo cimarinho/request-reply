@@ -29,3 +29,7 @@ services:
     ports:
       - 9092:9092
       - 29092:29092
+  redis:
+    image: redis
+    ports:
+      - 6379:6379

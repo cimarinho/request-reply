@@ -1,7 +1,9 @@
 spring:
   kafka:
     bootstrap-servers: localhost:9092
-
+  data:
+    redis:
+      host: localhost
 topic:
   request: pix_example_spring_template_topic
   reply: pix_example_spring_reply_topic
