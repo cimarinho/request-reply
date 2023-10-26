@@ -1,19 +1,5 @@
-.PHONY: setup build migrations fatjar docker-run
-
-setup:
-	@docker-compose up -d db
-	@gradle clean build -x test
-
-test:
-	@gradle clean build test
 build:
 	@gradle clean build
-
-docker-run:
-	@docker-compose up -d
-
-docker-down:
-	@docker-compose up -d
 
 init-project: init-database-test init-database-pix
 

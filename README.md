@@ -2,7 +2,16 @@
 
 docker-compose up
 make init-project
-./gradlew bootRun
+./gradlew bootRun --continue
+
+# execute
+curl --location 'http://localhost:8080/api/pix' \
+--header 'Content-Type: application/json' \
+--data '{
+"name": "Marinho",
+"quantity": 1,
+"amount": "10.5"
+}'
 
 # kafka command
 sh kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic order_create_topic --from-beginning
