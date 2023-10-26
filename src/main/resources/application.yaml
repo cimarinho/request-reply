@@ -1,9 +1,32 @@
 spring:
-  kafka:
-    bootstrap-servers: localhost:9092
   data:
     redis:
       host: localhost
-topic:
-  request: pix_example_spring_template_topic
-  reply: pix_example_spring_reply_topic
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      properties:
+        spring.json.trusted.packages: "*"
+  cloud:
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: true
+          consumer-properties:
+            key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value.deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            max.poll.records: 10
+            spring.json.trusted.packages: "*"
+          producer-properties:
+            key.serializer: org.apache.kafka.common.serialization.StringSerializer
+            value.serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      function:
+        definition: sendPixEvent;receivePixEvent
+      bindings:
+        sendPixEvent-out-0:
+          destination: pix_example_spring_template_topic
+        receivePixEvent-in-0:
+          destination: pix_example_spring_template_topic
+          group: order-consumer-group
+        receivePixEvent-out-0:
+          destination: pix_example_spring_reply_topic

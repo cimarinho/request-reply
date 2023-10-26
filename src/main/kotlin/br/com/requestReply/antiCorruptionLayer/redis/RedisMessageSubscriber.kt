@@ -1,4 +1,4 @@
-package br.com.requestReply.configuration
+package br.com.requestReply.antiCorruptionLayer.redis
 
 import org.springframework.data.redis.connection.Message
 import org.springframework.data.redis.connection.MessageListener
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 import java.util.concurrent.CompletableFuture
 
 @Service
-class MessageSubscriber(
+class RedisMessageSubscriber(
     private val stringRedisTemplate: StringRedisTemplate,
 ) {
     private val messageFutures = mutableMapOf<String, CompletableFuture<String>>()

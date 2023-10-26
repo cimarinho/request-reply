@@ -1,4 +1,4 @@
-package br.com.requestReply.configuration
+package br.com.requestReply.antiCorruptionLayer.redis
 
 import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Service
