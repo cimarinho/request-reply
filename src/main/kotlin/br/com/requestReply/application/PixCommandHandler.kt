@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 
 @Service
-class RequestReplyCommandHandler(
+class PixCommandHandler(
     private val  pixKafkaProducer: PixKafkaProducer,
     private val  pixPostgresRepository: PixPostgresRepository,
     @Value("\${waitInSeconds}") private val waitInSeconds: Int,

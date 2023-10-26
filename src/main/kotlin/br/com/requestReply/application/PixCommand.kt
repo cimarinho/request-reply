@@ -1,7 +1,6 @@
 package br.com.requestReply.application
 
 import br.com.requestReply.domain.PixEvent
-import br.com.requestReply.infrastructure.pix.postgres.Status
 
 class RequestReplyCommand(
     val correlationId: String,
