@@ -29,9 +29,10 @@ services:
     ports:
       - 9092:9092
       - 29092:29092
-  database:
+  db:
     environment:
       - POSTGRES_DB=pix
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456
     command: postgres -c 'max_connections=1000'
     image: postgres:11-alpine

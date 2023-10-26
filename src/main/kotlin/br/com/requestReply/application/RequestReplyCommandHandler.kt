@@ -1,6 +1,5 @@
 package br.com.requestReply.application
 
-import br.com.requestReply.domain.PixEvent
 import br.com.requestReply.infrastructure.pix.kafka.send.PixKafkaProducer
 import br.com.requestReply.infrastructure.pix.postgres.PixPostgresRepository
 import br.com.requestReply.infrastructure.pix.postgres.Status
@@ -16,7 +15,11 @@ class RequestReplyCommandHandler(
     fun handler(command: RequestReplyCommand){
         pixKafkaProducer.sendMessage(command.toEvent())
         val id = pixPostgresRepository.save(command.toEvent())
+        waitingTransaction(id)
+        println("saiu")
+    }
 
+    private fun waitingTransaction(id: Long){
         for (i in 1..waitInSeconds){
             val pix = pixPostgresRepository.findById(id)
             println("buscou")
@@ -27,7 +30,5 @@ class RequestReplyCommandHandler(
             Thread.sleep(500)
             println("aguardou")
         }
-
-        println("saiu")
     }
 }

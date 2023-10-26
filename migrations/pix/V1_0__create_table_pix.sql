@@ -1,3 +1,4 @@
+-- SEQUENCE
 CREATE SEQUENCE pix_seq
     AS bigint
     START WITH 1
@@ -6,6 +7,7 @@ CREATE SEQUENCE pix_seq
     NO MAXVALUE
     CACHE 1;
 
+-- FUNCTION
 create OR REPLACE FUNCTION pix_next_id(OUT result bigint) AS
 $$
 DECLARE
@@ -17,7 +19,7 @@ bigint;
     shard_id
 int    := 1;
 BEGIN
-SELECT nextval('pix_seq') % 1024
+SELECT nextval('pix.pix_seq') % 1024
 INTO seq_id;
 SELECT FLOOR(EXTRACT(EPOCH FROM clock_timestamp()) * 1000)
 INTO now_millis;
@@ -40,8 +42,10 @@ CREATE TABLE "pix"
     "quantity"                  bigint NULL,
     "amount"                    varchar(100) NULL,
     UNIQUE ("id")
-)
+);
 
 GRANT USAGE ON SEQUENCE pix_seq TO PUBLIC;
 
 GRANT SELECT, INSERT, UPDATE ON pix_seq to public;
+
+CREATE INDEX correlation_id_idx ON pix (correlation_id);

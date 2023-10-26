@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class PixKafkaConsumer(
-    private val  pixPostgresRepository: PixPostgresRepository,
+    private val pixPostgresRepository: PixPostgresRepository,
 ) {
 
     @KafkaListener(topics = ["\${topic.request}"])
@@ -24,6 +24,6 @@ class PixKafkaConsumer(
 
         val pixEvent = pixPostgresRepository.findByCorrelationId(pix.correlationId)
         pixEvent.updateStatus(Status.SETTLED)
-        pixPostgresRepository.update(pixEvent)
+        pixPostgresRepository.save(pixEvent)
     }
 }

@@ -20,5 +20,4 @@ class RequestReplyRoute(
         handler.handler(request.toCommand(correlationId.toString()))
         return ResponseEntity<RequestReplyRequest>(request, HttpStatus.CREATED)
     }
-
 }

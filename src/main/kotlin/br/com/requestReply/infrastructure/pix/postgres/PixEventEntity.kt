@@ -4,7 +4,7 @@ import br.com.requestReply.domain.PixEvent
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "pix")
+@Table(name = "pix", schema = "pix")
 data class PixEventEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
