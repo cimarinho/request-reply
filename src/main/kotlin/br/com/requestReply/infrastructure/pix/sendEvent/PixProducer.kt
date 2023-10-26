@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class PixKafkaProducer(
+class PixProducer(
     private val kafkaTemplate: ReplyingKafkaTemplate<String, PixEvent, PixEvent>,
     @Value("\${topic.request}") private val topicRequest: String,
     @Value("\${topic.reply}") private val topicReply : String,
