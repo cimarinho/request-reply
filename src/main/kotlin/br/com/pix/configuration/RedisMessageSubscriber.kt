@@ -10,15 +10,14 @@ import java.util.concurrent.CompletableFuture
 class RedisMessageSubscriber(
     private val stringRedisTemplate: StringRedisTemplate,
 ) {
-    private val messageFutures = mutableMapOf<String, CompletableFuture<Any>>()
+    private val messageFutures = mutableMapOf<String, CompletableFuture<String>>()
 
-    fun subscribeToChannel(channel: String): CompletableFuture<Any> {
-        val future = CompletableFuture<Any>()
+    fun subscribeToChannel(channel: String): CompletableFuture<String> {
+        val future = CompletableFuture<String>()
 
         val messageListener = object : MessageListener {
             override fun onMessage(message: Message, pattern: ByteArray?) {
-                val messageBody = message.body
-                future.complete(messageBody)
+                future.complete(message.toString())
             }
         }
 

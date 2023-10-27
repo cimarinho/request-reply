@@ -1,16 +1,25 @@
 package br.com.pix.infrastructure.pix.sendEvent
 
 import br.com.pix.domain.PixEvent
-import br.com.pix.infrastructure.kafka.KafkaEventSend
+import org.apache.kafka.clients.producer.ProducerRecord
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
 @Component
 class PixSendEvent(
-) : KafkaEventSend<PixEvent>() {
+    private val kafkaTemplate: KafkaTemplate<String, PixEvent>,
+    @Value("\${topic.request}") private val topicRequest: String,
+    @Value("\${topic.reply}") private val topicReply: String,
 
-    override fun send(event: PixEvent) {
+    ) {
+
+    fun sendMessage(message: PixEvent) {
         println("init sendMessage")
-        sendMessage(event)
-        println("==FOI")
+        val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(
+            topicRequest, 0, message.correlationId, message
+        )
+        kafkaTemplate.send(record)
+        println("send kafka correlation ${message.correlationId}")
     }
 }

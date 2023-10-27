@@ -24,6 +24,9 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic pix_example_spr
 kafka-topics --list --bootstrap-server localhost:9092<br>
 kafka-topics --create --topic pix_example_spring_reply_topic --bootstrap-server localhost:9092 --partitions 3 --replication-factor <fator-replicacao><br>
 
+kafka-topics --alter --topic pix_example_spring_template_topic --partitions 5 --bootstrap-server localhost:9092<br>
+kafka-topics --alter --topic pix_example_spring_template_topic --partitions 5 --bootstrap-server localhost:9092<br>
+
 
 # k6 run
 k6 run --vus 10 --duration 5s script.js<br>

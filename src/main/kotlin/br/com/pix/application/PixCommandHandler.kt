@@ -10,7 +10,7 @@ class PixCommandHandler(
     private val messageSubscriber: RedisMessageSubscriber,
 ) {
     fun handler(command: PixCommand){
-        pixSendEvent.send(command.toEvent())
+        pixSendEvent.sendMessage(command.toEvent())
 
         val future = messageSubscriber.subscribeToChannel(command.correlationId)
         val messageRedis = future.join()
