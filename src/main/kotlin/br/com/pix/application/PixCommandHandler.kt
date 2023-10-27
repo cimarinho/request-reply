@@ -1,7 +1,7 @@
-package br.com.requestReply.application
+package br.com.pix.application
 
-import br.com.requestReply.antiCorruptionLayer.redis.RedisMessageSubscriber
-import br.com.requestReply.infrastructure.pix.sendEvent.PixSendEvent
+import br.com.pix.configuration.RedisMessageSubscriber
+import br.com.pix.infrastructure.pix.sendEvent.PixSendEvent
 import org.springframework.stereotype.Service
 
 @Service

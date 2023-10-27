@@ -1,6 +1,6 @@
-package br.com.requestReply.antiCorruptionLayer.kafka.configuration
+package br.com.pix.infrastructure.kafka
 
-import br.com.requestReply.domain.Event
+import br.com.pix.domain.Event
 import org.springframework.integration.support.MessageBuilder
 import org.springframework.messaging.Message
 import reactor.core.publisher.Sinks

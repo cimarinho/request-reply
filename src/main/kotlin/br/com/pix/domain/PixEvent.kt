@@ -1,4 +1,4 @@
-package br.com.requestReply.domain
+package br.com.pix.domain
 
 data class PixEvent(
     override val correlationId: String,

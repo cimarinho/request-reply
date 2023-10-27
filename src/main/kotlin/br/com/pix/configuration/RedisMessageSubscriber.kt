@@ -1,4 +1,4 @@
-package br.com.requestReply.antiCorruptionLayer.redis
+package br.com.pix.configuration
 
 import org.springframework.data.redis.connection.Message
 import org.springframework.data.redis.connection.MessageListener
@@ -10,14 +10,14 @@ import java.util.concurrent.CompletableFuture
 class RedisMessageSubscriber(
     private val stringRedisTemplate: StringRedisTemplate,
 ) {
-    private val messageFutures = mutableMapOf<String, CompletableFuture<String>>()
+    private val messageFutures = mutableMapOf<String, CompletableFuture<Any>>()
 
-    fun subscribeToChannel(channel: String): CompletableFuture<String> {
-        val future = CompletableFuture<String>()
+    fun subscribeToChannel(channel: String): CompletableFuture<Any> {
+        val future = CompletableFuture<Any>()
 
         val messageListener = object : MessageListener {
             override fun onMessage(message: Message, pattern: ByteArray?) {
-                val messageBody = String(message.body)
+                val messageBody = message.body
                 future.complete(messageBody)
             }
         }

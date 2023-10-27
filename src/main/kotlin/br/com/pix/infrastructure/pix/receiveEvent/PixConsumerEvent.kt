@@ -1,7 +1,7 @@
-package br.com.requestReply.infrastructure.pix.receiveEvent
+package br.com.pix.infrastructure.pix.receiveEvent
 
-import br.com.requestReply.antiCorruptionLayer.redis.RedisMessagePublisher
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.configuration.RedisMessagePublisher
+import br.com.pix.domain.PixEvent
 import kotlinx.coroutines.reactor.mono
 import org.springframework.context.annotation.Bean
 import org.springframework.messaging.Message

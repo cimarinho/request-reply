@@ -1,7 +1,7 @@
-package br.com.requestReply.infrastructure.pix.sendEvent
+package br.com.pix.infrastructure.pix.sendEvent
 
-import br.com.requestReply.domain.PixEvent
-import br.com.requestReply.antiCorruptionLayer.kafka.configuration.KafkaEventSend
+import br.com.pix.domain.PixEvent
+import br.com.pix.infrastructure.kafka.KafkaEventSend
 import org.springframework.stereotype.Component
 
 @Component
