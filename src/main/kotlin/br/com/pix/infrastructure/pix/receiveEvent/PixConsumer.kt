@@ -1,6 +1,6 @@
-package br.com.requestReply.infrastructure.pix.receiveEvent
+package br.com.pix.infrastructure.pix.receiveEvent
 
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.domain.PixEvent
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.messaging.Message
@@ -18,7 +18,7 @@ class PixConsumer(
         val pix = message.payload
         println("correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
 
-        Thread.sleep(100)
+        Thread.sleep(1500)
         return  pix
     }
 }

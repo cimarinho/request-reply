@@ -1,6 +1,6 @@
-package br.com.requestReply.configuration
+package br.com.pix.configuration
 
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.domain.PixEvent
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringDeserializer

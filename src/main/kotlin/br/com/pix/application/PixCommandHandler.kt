@@ -1,6 +1,6 @@
-package br.com.requestReply.application
+package br.com.pix.application
 
-import br.com.requestReply.infrastructure.pix.sendEvent.PixProducer
+import br.com.pix.infrastructure.pix.sendEvent.PixProducer
 import org.springframework.stereotype.Service
 
 @Service

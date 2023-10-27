@@ -1,4 +1,4 @@
-package br.com.requestReply.configuration
+package br.com.pix.configuration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule

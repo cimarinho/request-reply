@@ -1,6 +1,6 @@
-package br.com.requestReply.infrastructure.pix.sendEvent
+package br.com.pix.infrastructure.pix.sendEvent
 
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.domain.PixEvent
 import org.apache.kafka.clients.producer.ProducerRecord
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.kafka.requestreply.ReplyingKafkaTemplate
