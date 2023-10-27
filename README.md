@@ -18,8 +18,8 @@ sh kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic produceMe
 sh kafka-topics.sh --list --bootstrap-server localhost:9092<br>
 sh kafka-topics.sh --create --topic order_create_topic --bootstrap-server localhost:9092 --partitions <num-particoes> --replication-factor <fator-replicacao><br>
 sh kafka-topics.sh  --create --topic pix_example_spring_template_topic --bootstrap-server localhost:9092 --partitions 3<br>
-sh kafka-topics.sh  --create --topic pix_example_spring_reply_topic --bootstrap-server localhost:9092 --partitions 3<br>
-kafka-console-consumer --bootstrap-server localhost:9092 --topic order_create_topic --from-beginning --property value.deserializer=org.springframework.kafka.support.serializer.JsonDeserializer<br>
+sh kafka-topics.sh  --create --topic pix_example_spring_template_topic --bootstrap-server localhost:9092 --partitions 3<br>
+kafka-console-consumer --bootstrap-server localhost:9092 --topic pix_example_spring_template_topic --from-beginning --property value.deserializer=org.springframework.kafka.support.serializer.JsonDeserializer<br>
 kafka-console-consumer --bootstrap-server localhost:9092 --topic pix_example_spring_template_topic<br>
 kafka-topics --list --bootstrap-server localhost:9092<br>
 kafka-topics --create --topic pix_example_spring_reply_topic --bootstrap-server localhost:9092 --partitions 3 --replication-factor <fator-replicacao><br>
