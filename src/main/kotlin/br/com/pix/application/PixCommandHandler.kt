@@ -1,8 +1,8 @@
-package br.com.requestReply.application
+package br.com.pix.application
 
-import br.com.requestReply.infrastructure.pix.kafka.send.PixKafkaProducer
-import br.com.requestReply.infrastructure.pix.postgres.PixPostgresRepository
-import br.com.requestReply.infrastructure.pix.postgres.Status
+import br.com.pix.infrastructure.pix.kafka.send.PixKafkaProducer
+import br.com.pix.infrastructure.pix.postgres.PixPostgresRepository
+import br.com.pix.infrastructure.pix.postgres.Status
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 

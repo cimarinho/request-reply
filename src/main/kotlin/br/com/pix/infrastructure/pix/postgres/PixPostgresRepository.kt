@@ -1,6 +1,6 @@
-package br.com.requestReply.infrastructure.pix.postgres
+package br.com.pix.infrastructure.pix.postgres
 
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.domain.PixEvent
 import org.springframework.stereotype.Component
 
 @Component

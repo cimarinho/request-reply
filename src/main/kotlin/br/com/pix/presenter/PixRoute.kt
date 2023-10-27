@@ -1,6 +1,6 @@
-package br.com.requestReply.presenter
+package br.com.pix.presenter
 
-import br.com.requestReply.application.PixCommandHandler
+import br.com.pix.application.PixCommandHandler
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping

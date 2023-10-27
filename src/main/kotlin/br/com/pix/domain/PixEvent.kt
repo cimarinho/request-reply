@@ -1,6 +1,6 @@
-package br.com.requestReply.domain
+package br.com.pix.domain
 
-import br.com.requestReply.infrastructure.pix.postgres.Status
+import br.com.pix.infrastructure.pix.postgres.Status
 
 data class PixEvent private constructor(
     val id: Long? = null,

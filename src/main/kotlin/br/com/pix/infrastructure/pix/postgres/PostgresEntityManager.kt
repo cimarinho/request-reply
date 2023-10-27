@@ -1,4 +1,4 @@
-package br.com.requestReply.infrastructure.pix.postgres
+package br.com.pix.infrastructure.pix.postgres
 
 import jakarta.persistence.EntityManager
 import org.springframework.stereotype.Component

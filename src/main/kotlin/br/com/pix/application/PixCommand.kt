@@ -1,6 +1,6 @@
-package br.com.requestReply.application
+package br.com.pix.application
 
-import br.com.requestReply.domain.PixEvent
+import br.com.pix.domain.PixEvent
 
 class RequestReplyCommand(
     val correlationId: String,

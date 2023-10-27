@@ -1,6 +1,6 @@
-package br.com.requestReply.presenter
+package br.com.pix.presenter
 
-import br.com.requestReply.application.RequestReplyCommand
+import br.com.pix.application.RequestReplyCommand
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class RequestReplyRequest(
