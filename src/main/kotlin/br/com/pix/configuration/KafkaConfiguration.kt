@@ -70,6 +70,7 @@ class KafkaConfiguration {
         return factory
     }
 
+
     @Bean
     fun consumerFactory(): ConsumerFactory<String, PixEvent> {
         return DefaultKafkaConsumerFactory<String, PixEvent>(

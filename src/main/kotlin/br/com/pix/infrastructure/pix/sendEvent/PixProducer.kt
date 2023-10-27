@@ -13,14 +13,16 @@ class PixProducer(
     private val kafkaTemplate: ReplyingKafkaTemplate<String, PixEvent, PixEvent>,
     @Value("\${topic.request}") private val topicRequest: String,
     @Value("\${topic.reply}") private val topicReply : String,
+    @Value("\${topic.partition}") private val partition : String,
 ) {
 
 
     fun sendMessage(message: PixEvent) {
         println("init  PixProducer =  ${message}topicRequest|${topicRequest},topicReply|${topicReply}")
+//        val number = Random().nextInt(3)
         val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(
             topicRequest,
-            Random().nextInt(3), message.correlationId, message
+            partition.toInt(), message.correlationId, message
         )
         record.headers().add(KafkaHeaders.REPLY_TOPIC, topicReply.toByteArray())
         println("correlation ${message.correlationId}")
