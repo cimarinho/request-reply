@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-open class RequestReplyApplication
+class PixApplication
 
 fun main() {
-    runApplication<RequestReplyApplication>()
+    runApplication<PixApplication>()
 }
 
