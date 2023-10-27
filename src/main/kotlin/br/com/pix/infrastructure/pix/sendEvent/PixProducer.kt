@@ -19,7 +19,13 @@ class PixProducer(
 
     fun sendMessage(message: PixEvent) {
         println("init  PixProducer =  ${message}topicRequest|${topicRequest},topicReply|${topicReply}")
-//        val number = Random().nextInt(3)
+
+//        val number = Random().nextInt(partition.toInt())
+//        val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(
+//            topicRequest,
+//            number, message.correlationId, message
+//        )
+
         val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(
             topicRequest,
             partition.toInt(), message.correlationId, message
