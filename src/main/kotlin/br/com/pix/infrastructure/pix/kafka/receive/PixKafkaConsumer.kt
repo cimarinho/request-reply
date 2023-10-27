@@ -19,8 +19,8 @@ class PixKafkaConsumer(
         val pix = message.payload
         println("Consumer correlation=${pix.correlationId} ${message.headers["kafka_receivedPartitionId"]} ${message.headers["kafka_groupId"]}")
 
-        Thread.sleep(2000)
-        println("waiting 2s")
+        Thread.sleep(200)
+        println("waiting 200ms")
 
         val pixEvent = pixPostgresRepository.findByCorrelationId(pix.correlationId)
         pixEvent.updateStatus(Status.SETTLED)
