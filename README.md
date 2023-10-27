@@ -1,6 +1,6 @@
 # pix init
 
-docker-compose up <br>
+docker-compose up<br>
 ./gradlew bootRun --continue<br>
 
 # execute
@@ -31,3 +31,6 @@ k6 run script.js<br>
 
 # jvm
 sudo update-alternatives --config java<br>
+
+
+
