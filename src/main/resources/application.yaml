@@ -5,4 +5,4 @@ spring:
 topic:
   request: pix_example_spring_template_topic
   reply: pix_example_spring_reply_topic
-  partition: 0
+  partition: 5

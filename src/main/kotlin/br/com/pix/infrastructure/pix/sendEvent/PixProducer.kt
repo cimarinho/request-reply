@@ -20,10 +20,12 @@ class PixProducer(
     fun sendMessage(message: PixEvent) {
         println("init  PixProducer =  ${message}topicRequest|${topicRequest},topicReply|${topicReply}")
 
+        val number = Random().nextInt(partition.toInt())
         val record: ProducerRecord<String, PixEvent> = ProducerRecord<String, PixEvent>(
             topicRequest,
-            partition.toInt(), message.correlationId, message
+            number, message.correlationId, message
         )
+
         record.headers().add(KafkaHeaders.REPLY_TOPIC, topicReply.toByteArray())
         println("correlation ${message.correlationId}")
         val sendAndReceive = kafkaTemplate.sendAndReceive(record);
